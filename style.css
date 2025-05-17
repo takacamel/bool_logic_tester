@@ -1,0 +1,343 @@
+/* === 基本スタイルとリセット === */
+* {
+    box-sizing: border-box; /* ★レイアウト崩れの主要な対策 */
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 900px; /* 最大幅を設定 */
+    margin: 20px auto; /* 上下マージンと中央寄せ */
+}
+
+h1, h2, h3 { /* h3も共通スタイルに含める */
+    color: #1d2129;
+    border-bottom: 1px solid #dddfe2;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+hr {
+    border: none;
+    border-top: 1px solid #dddfe2;
+    margin: 30px 0;
+}
+
+/* === セクション共通スタイル === */
+.data-definition-area,
+.condition-builder-area,
+.filter-result-display {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ccd0d5;
+    border-radius: 5px;
+    background-color: #f5f6f7;
+}
+
+/* === ボタン共通スタイル (汎用) === */
+.add-button,
+.mode-toggle-button,s
+.action-button { /* .action-button は複製ボタンなどで使用 */
+    padding: 8px 12px;
+    border: 1px solid #ccd0d5;
+    border-radius: 3px;
+    background-color: #f5f6f7;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: #4b4f56;
+}
+.add-button:hover,
+.mode-toggle-button:hover,
+.action-button:hover {
+    background-color: #e9ebee;
+}
+
+/* === データ定義エリア === */
+.area-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.data-field-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #dddfe2;
+    border-radius: 3px;
+}
+.data-field-row input[type="text"] {
+    flex-grow: 1;
+    margin: 0 5px;
+    padding: 8px;
+    border: 1px solid #ccd0d5;
+    border-radius: 3px;
+}
+.data-field-row .equals-sign {
+    margin: 0 10px; /* 少しスペースを調整 */
+    font-weight: bold;
+}
+.data-field-row .remove-button { /* データ定義行の×ボタン */
+    padding: 5px 10px;
+    background-color: #e4e6eb; /* 他のボタンと色味を合わせるか、専用の色にするか */
+    color: #4b4f56;
+    border: 1px solid #ccd0d5;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px; /* ×がボタン様に見えるように */
+    margin-left: 5px;
+}
+.data-field-row .remove-button:hover {
+    background-color: #d1d3d6;
+}
+
+#data-fields-ui-container .add-button { /* データ定義の末尾の「+」ボタン */
+    display: block;
+    margin: 15px 0 0 auto; /* 上にスペース、右寄せ */
+    width: 40px;
+    height: 40px;
+    line-height: 1; /* line-height調整で+が中央に来やすくなることも */
+    text-align: center;
+    font-size: 1.2em; /* + を少し大きく */
+}
+
+/* JSON編集関連 (データ定義エリア) */
+.json-textarea {
+    width: 100%;
+    min-height: 150px;
+    /* height: auto; はブラウザ挙動に依存するため、固定値かJSでの調整が望ましい場合も */
+    /* height: 200px; /* 固定値の例 */
+    border: 1px solid #ccd0d5;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    padding: 10px;
+    white-space: pre; 
+    overflow: auto; 
+}
+.json-error-display {
+    color: red;
+    background-color: #ffebee;
+    border: 1px solid red;
+    padding: 10px;
+    margin-bottom: 10px; /* エラーメッセージと下の要素の間隔 */
+    border-radius: 3px;
+    white-space: pre-wrap;
+}
+.json-error-display:empty {
+    display: none;
+}
+
+/* === 条件設定エリア === */
+
+.condition-group {
+    background-color: #f0f0f0;
+    border: 1px solid #c5c5c5;
+    padding: 15px;
+    margin-top: 15px; /* グループ間のスペース */
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.condition-group .group-controls,
+.condition-group .group-actions {
+    background-color: transparent;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 10px;
+    margin-bottom: 15px; /* リストや次のコントロールとのスペース */
+    display: flex; /* ボタン類を横並びにするため */
+    align-items: center;
+}
+.condition-group .group-controls select {
+    padding: 8px 12px;
+    border: 1px solid #ccd0d5;
+    border-radius: 3px;
+    background-color: #fff; /* selectの背景を白に */
+    margin-right: 10px;
+}
+.condition-group .group-actions button { /* add-condition, add-group ボタン */
+    margin-right: 10px;
+    padding: 8px 12px;
+    border: 1px solid #ccd0d5;
+    border-radius: 3px;
+    background-color: #f5f6f7; /* ボタンの背景 */
+    color: #4b4f56;
+    cursor: pointer;
+}
+.condition-group .group-actions button:hover {
+    background-color: #e9ebee;
+}
+.condition-group .group-actions button:last-child {
+    margin-right: 0;
+}
+
+
+/* 条件リストとツリー表示 */
+.condition-group .conditions-list {
+    position: relative;
+    padding-left: 25px; 
+    padding-top: 10px;
+    margin-left: 5px; /* グループコントロールとの微調整 */
+}
+.condition-group .conditions-list::before {
+    content: "";
+    position: absolute;
+    left: 10px; 
+    top: 5px; /* 少し下げる */
+    bottom: 5px; /* 少し下げる */
+    width: 2px;
+    background-color: #d0d8e0;
+    border-radius: 1px;
+}
+.condition-group .conditions-list > .condition-row,
+.condition-group .conditions-list > .condition-group { /* ネストされたグループもマージン0 */
+    margin-left: 0; 
+}
+
+/* 条件行 */
+.condition-row {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 8px;
+    background-color: #e7f3ff;
+    border: 1px solid #b9d7f7;
+    border-radius: 3px;
+}
+.condition-row select, 
+.condition-row input[type="text"] {
+    margin-right: 8px;
+    padding: 8px;
+    border: 1px solid #ccd0d5;
+    border-radius: 3px;
+    min-width: 100px; /* 最小幅を確保 */
+}
+.condition-row input[type="text"] { /* 比較値の入力欄はflex-growで伸びるように */
+    flex-grow: 1;
+}
+.condition-row .action-button, /* 複製ボタンなど */
+.condition-row .remove-button {
+    padding: 6px 10px;
+    margin-left: 5px;
+    border: 1px solid #ccd0d5;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    flex-shrink: 0; /* ボタンが縮まないように */
+}
+.condition-row .duplicate-button {
+    background-color: #e4e6eb;
+    color: #4b4f56;
+}
+.condition-row .duplicate-button:hover {
+    background-color: #dcdfe3;
+}
+.condition-row .remove-button {
+    background-color: #ffdddd; 
+    border-color: #ffb3b3;
+    /* margin-left: auto; は削除、ボタンは右に並ぶ */
+}
+.condition-row .remove-button:hover {
+    background-color: #ffcccc;
+}
+
+
+/* === フィルター実行ボタン === */
+.evaluate-button {
+    display: block;
+    width: 200px;
+    padding: 12px 20px;
+    background-color: #1877f2;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    margin: 30px auto; /* 上下マージンを調整 */
+    cursor: pointer;
+}
+.evaluate-button:hover {
+    background-color: #166fe5;
+}
+
+/* === 結果表示エリア === */
+.boolean-result-prominent {
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 15px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+.boolean-result-prominent.true {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+.boolean-result-prominent.false {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.json-details {
+    margin-top: 15px; /* details間の間隔を少し広げる */
+    background-color: #fff; 
+    border: 1px solid #dddfe2;
+    border-radius: 4px;
+}
+.json-details summary {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #f5f6f7;
+    /* border-bottom: 1px solid #dddfe2; */ /* 閉じてるときは不要かも */
+    font-weight: bold; /* summaryを少し強調 */
+    list-style-position: inside;
+    border-radius: 3px; /* summaryにも角丸 */
+}
+.json-details summary:hover {
+    background-color: #e9ebee;
+}
+.json-details[open] summary {
+    border-bottom: 1px solid #dddfe2; /* 開いている時は区切り線 */
+    border-bottom-left-radius: 0; /* 開いている時は下側の角丸をなくす */
+    border-bottom-right-radius: 0;
+}
+.json-details pre {
+    padding: 15px;
+    background-color: #fff; 
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0; /* preのマージンをリセット */
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 0.9em; /* pre内のフォントサイズ調整 */
+    border-top: 1px solid #dddfe2; /* pre と summary の明確な区切り */
+}
+
+/* ハイライト用スタイル */
+.highlight-true {
+    color: green;
+}
+.highlight-false {
+    color: red;
+}
+/* Removed empty ruleset for #conditionStructureJsonOutput span */

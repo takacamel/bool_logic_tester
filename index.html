@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブール論理テスター</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ブール論理テスター</h1>
+
+        <section class="data-definition-area">
+            <div class="area-header">
+                <h2>データ定義</h2>
+                <button id="toggleDataJsonModeButton" class="mode-toggle-button">JSONで編集</button>
+            </div>
+
+            <div id="data-fields-ui-container">
+                <div id="data-fields-container">
+                    </div>
+                <button id="addDataField" class="add-button">+</button>
+            </div>
+
+            <div id="data-json-editor-container" style="display:none;">
+                <textarea id="dataDefinitionJsonTextarea" class="json-textarea"></textarea>
+                <div id="dataJsonErrorDisplay" class="json-error-display"></div>
+                </div>
+        </section>
+
+        <section class="condition-builder-area">
+            <div class="area-header"> <h2>条件設定</h2>
+                <button id="toggleConditionsJsonModeButton" class="mode-toggle-button">JSONで編集</button>
+            </div>
+
+            <div id="condition-builder-ui-container"> <div id="condition-root" class="condition-group">
+                    <div class="group-controls">
+                        <select class="group-type-select">
+                            <option value="AND">すべての条件に一致 (AND)</option>
+                            <option value="OR">いずれかの条件に一致 (OR)</option>
+                        </select>
+                    </div>
+                    <div class="conditions-list">
+                        </div>
+                    <div class="group-actions">
+                        <button class="add-condition-button">条件を追加</button>
+                        <button class="add-group-button">条件グループを追加</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="conditions-json-editor-container" style="display:none;"> <textarea id="conditionSettingsJsonTextarea" class="json-textarea"></textarea>
+                <div id="conditionsJsonErrorDisplay" class="json-error-display"></div>
+                </div>
+        </section>
+        <hr>
+        <button id="evaluateButton" class="evaluate-button">フィルター実行</button>
+        
+        <div id="filterResult" class="filter-result-display">
+            <h3>評価結果</h3>
+            <div id="finalBooleanResultDisplay" class="boolean-result-prominent">
+                </div>
+
+            <details class="json-details">
+                <summary>テストデータ (JSON) を表示/非表示</summary>
+                <pre id="testDataJsonOutput"></pre>
+            </details>
+
+            <details class="json-details">
+                <summary>条件構造 (JSON) を表示/非表示</summary>
+                <pre id="conditionStructureJsonOutput"></pre>
+            </details>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
